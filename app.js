@@ -23,9 +23,9 @@ userIo.on('connection', (socket) => {
         userIo.emit('user-list', playerArray);
     })
     
-    socket.on('lobby-chat', (message) => {
-        console.log(`Kliens üzenet: ${message}`);
-        userIo.emit('lobby-chat', message);
+    socket.on('lobby-chat', (sender, message) => {
+        console.log(sender + message);
+        userIo.emit('lobby-chat', sender, message);
     });
     
     socket.on('disconnect', () => {
