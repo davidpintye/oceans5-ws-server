@@ -22,12 +22,12 @@ userIo.on('connection', (socket) => {
         playerArray.push(player);
         userIo.emit('user-list', playerArray);
     })
-    
-    socket.on('lobby-chat', (message) => {
+
+    socket.on('lobby-chat', (player, message) => {
         console.log(`Kliens üzenet: ${message}`);
-        userIo.emit('lobby-chat', message);
+        userIo.emit('lobby-chat', player, message);
     });
-    
+
     socket.on('disconnect', () => {
         playerArray = playerArray.filter(player => player.socketId != socket.id);
         console.log(playerArray);
