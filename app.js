@@ -20,7 +20,7 @@ userIo.on('connection', (socket) => {
     socket.on('player-joined', (player) => {
         player.socketId = socket.id;
         playerArray.push(player);
-        userIo.emit('user-list', playerArray);
+        userIo.emit('player-list', playerArray);
     })
     
     socket.on('lobby-chat', (sender, message) => {
@@ -31,7 +31,7 @@ userIo.on('connection', (socket) => {
     socket.on('disconnect', () => {
         playerArray = playerArray.filter(player => player.socketId != socket.id);
         console.log(playerArray);
-        userIo.emit('user-list', playerArray);
+        userIo.emit('player-list', playerArray);
         console.log('Kliens lekapcsolódott');
     });
 });
